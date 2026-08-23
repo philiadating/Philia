@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eliminar cuenta · Philia | Delete account</title>
+<meta name="description" content="Cómo eliminar tu cuenta de Philia y todos tus datos. How to delete your Philia account and all your data.">
+<style>
+  :root{
+    --bg:#0E0E10;
+    --card:#16161A;
+    --primary:#E11D48;      /* rojo Philia */
+    --primary-soft:#F43F5E;
+    --text:#F5F5F7;
+    --muted:#A1A1AA;
+    --border:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    padding:24px;
+    min-height:100vh;
+  }
+  .wrap{max-width:720px;margin:0 auto}
+  header{text-align:center;padding:48px 0 32px}
+  .logo{
+    font-size:34px;font-weight:800;letter-spacing:-.5px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-soft));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .logo span{font-size:15px}
+  h1{font-size:24px;font-weight:700;margin:28px 0 6px}
+  h2{font-size:15px;font-weight:600;color:var(--primary-soft);
+     text-transform:uppercase;letter-spacing:1px;margin:0 0 14px}
+  .lang{
+    display:inline-block;font-size:13px;color:var(--muted);
+    border:1px solid var(--border);border-radius:999px;
+    padding:5px 14px;margin-top:14px;
+  }
+  .card{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:18px;padding:28px;margin:18px 0;
+  }
+  .steps{list-style:none;counter-reset:s;margin:6px 0}
+  .steps li{
+    counter-increment:s;position:relative;
+    padding:10px 0 10px 44px;color:var(--text);
+  }
+  .steps li::before{
+    content:counter(s);position:absolute;left:0;top:8px;
+    width:28px;height:28px;border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--primary-soft));
+    color:#fff;font-weight:700;font-size:14px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .data-list{list-style:none;margin:6px 0}
+  .data-list li{padding:6px 0 6px 26px;position:relative;color:var(--muted)}
+  .data-list li::before{
+    content:"×";position:absolute;left:0;top:5px;color:var(--primary-soft);
+    font-weight:800;font-size:16px;
+  }
+  .muted{color:var(--muted);font-size:14px}
+  strong{color:var(--text)}
+  .divider{height:1px;background:var(--border);margin:44px 0}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 0 8px}
+  a{color:var(--primary-soft);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .badge{
+    display:inline-block;background:rgba(225,29,72,.12);
+    color:var(--primary-soft);font-size:13px;font-weight:600;
+    padding:5px 12px;border-radius:8px;margin-bottom:16px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">Philia <span>♥</span></div>
+  </header>
+
+  <!-- ══════════════ ESPAÑOL ══════════════ -->
+  <section>
+    <h1>Eliminar tu cuenta de Philia</h1>
+    <p class="muted">Esta página explica cómo eliminar tu cuenta de Philia y todos los datos asociados a ella.</p>
+
+    <div class="card">
+      <h2>Cómo eliminar tu cuenta</h2>
+      <span class="badge">Desde la aplicación</span>
+      <p class="muted" style="margin-bottom:16px">Puedes eliminar tu cuenta en cualquier momento directamente desde la app:</p>
+      <ol class="steps">
+        <li>Abre la aplicación <strong>Philia</strong>.</li>
+        <li>Ve a tu <strong>Perfil</strong>.</li>
+        <li>Entra en <strong>Ajustes</strong>.</li>
+        <li>Pulsa <strong>Eliminar cuenta</strong>.</li>
+        <li>Confirma la eliminación.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Qué datos se eliminan</h2>
+      <p class="muted" style="margin-bottom:12px">Al eliminar tu cuenta se borran <strong>de inmediato y de forma permanente</strong> todos tus datos, incluyendo:</p>
+      <ul class="data-list">
+        <li>Tu perfil e información personal (nombre, edad, ubicación, etc.)</li>
+        <li>Tus fotos</li>
+        <li>Tus likes, matches y tríos</li>
+        <li>Tus conversaciones y mensajes</li>
+        <li>Tus datos de uso asociados a la cuenta</li>
+      </ul>
+      <p class="muted" style="margin-top:16px">
+        <strong>No conservamos ningún dato tras la eliminación.</strong> El borrado es total e irreversible, y se completa en el momento en que lo confirmas.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Philia · <span id="year"></span> · <a href="mailto:info@bubhe.com">info@bubhe.com</a>
+  </footer>
+
+</div>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

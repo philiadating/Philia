@@ -19,6 +19,9 @@
   .content ul { margin: 0.5rem 0 0.75rem 0; padding-left: 0; list-style: none; }
   .content ul li { font-size: 0.92rem; color: #C0C0C0; padding: 0.3rem 0 0.3rem 1.4rem; position: relative; line-height: 1.6; }
   .content ul li::before { content: ''; position: absolute; left: 0; top: 0.72rem; width: 5px; height: 5px; background: #CC1A1A; border-radius: 50%; }
+  .content ol { margin: 0.5rem 0 0.75rem 0; padding-left: 0; list-style: none; counter-reset: s; }
+  .content ol li { counter-increment: s; font-size: 0.92rem; color: #C0C0C0; padding: 0.5rem 0 0.5rem 2.5rem; position: relative; line-height: 1.6; }
+  .content ol li::before { content: counter(s); position: absolute; left: 0; top: 0.4rem; width: 26px; height: 26px; border-radius: 50%; background: #CC1A1A; color: white; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; }
   .content .highlight { background: rgba(204,26,26,0.08); border-left: 3px solid #CC1A1A; border-radius: 0 8px 8px 0; padding: 0.75rem 1rem; margin: 1rem 0; }
   a { color: #e06060; }
   .legal-nav { display: flex; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
@@ -61,14 +64,17 @@
     <ul><li>Menú → Configuración de Privacidad / Cookies</li></ul>
     <h3>Desde tu dispositivo</h3>
     <ul><li>iOS → Ajustes → Privacidad → Seguimiento</li><li>Android → Google → Anuncios → Restablecer ID</li></ul>
+    <h3>Desde el navegador</h3>
+    <ul><li>Ajustes de privacidad y seguridad</li><li>Eliminación manual de cookies</li></ul>
     <h2>7. Conservación</h2>
     <ul><li>Sesión: se eliminan al cerrar la app o navegador</li><li>Persistentes: entre 1 mes y 24 meses</li></ul>
+    <p>Puedes solicitar una lista detallada: <a href="mailto:philiadating@bubhe.com">philiadating@bubhe.com</a></p>
     <h2>8. Cambios en esta política</h2>
     <p>PhiliaDating puede actualizar esta política. Se notificará cuando haya cambios significativos.</p>
     <h2>9. Contacto</h2>
     <p>📧 <a href="mailto:philiadating@bubhe.com">philiadating@bubhe.com</a></p>
 </div>
-  <div class="legal-nav"><a href="https://philiadating.com/privacidad.html">Política de Privacidad</a></div>
+  <div class="legal-nav"><a href="privacidad.html">Política de Privacidad</a> <span>·</span> <a href="terminos.html">Términos de Uso</a> <span>·</span> <a href="eliminar-cuenta.html">Eliminar cuenta</a></div>
 </div>
 </body>
 </html>

@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Philia — Enciende la chispa</title>
-  <link rel="icon" href="/favicon.ico">
-  <link rel="icon" href="/favicon.ico">
 <style>
 @font-face {
   font-family: 'MedusaGothic';
@@ -252,6 +250,115 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
   .footer-links a { color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.82rem; }
   .footer-copy { color:rgba(255,255,255,0.4); font-size:0.75rem; }
 }
+
+  /* ── WAITING LIST POPUP ── */
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    backdrop-filter: blur(4px);
+  }
+  .popup-overlay.open { display: flex; }
+  .popup-box {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    max-width: 440px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    animation: popupIn 0.3s ease;
+  }
+  @keyframes popupIn {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .popup-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: #aaa;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .popup-close:hover { background: rgba(255,255,255,0.15); color: white; }
+  .popup-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .popup-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #F0F0F0;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .popup-title em { font-style: italic; color: #CC1A1A; }
+  .popup-subtitle {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+  }
+  .popup-form { display: flex; flex-direction: column; gap: 0.75rem; }
+  .popup-input {
+    width: 100%;
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 0.85rem 1.25rem;
+    color: #F0F0F0;
+    font-size: 0.95rem;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  .popup-input:focus { border-color: #CC1A1A; }
+  .popup-input::placeholder { color: #666; }
+  .popup-btn {
+    background: #CC1A1A;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .popup-btn:hover { background: #991010; }
+  .popup-success { display: none; }
+  .popup-success.show { display: block; }
+  .popup-success p { color: #aaa; font-size: 0.9rem; margin-top: 0.5rem; }
+  .popup-badge {
+    display: inline-block;
+    background: rgba(204,26,26,0.12);
+    color: #CC1A1A;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(204,26,26,0.2);
+  }
+  .popup-legal {
+    font-size: 0.72rem;
+    color: #555;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+
 </style>
 </head>
 <body>
@@ -270,7 +377,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
     <li><a href="#features" class="nav-link-item">Funciones</a></li>
     <li><a href="#como-funciona" class="nav-link-item">Como funciona</a></li>
     <li><a class="nav-link-item" onclick="showPage('page-contacto'); return false;" style="cursor:pointer;">Contacto</a></li>
-    <li><a href="#" class="nav-cta">Empezar gratis</a></li>
+    <li><a href="#" class="nav-cta" onclick="openPopup(); return false;">Empezar gratis</a></li>
   </ul>
 </nav>
 
@@ -280,7 +387,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
     <h1>Enciende la<br><em>chispa</em> que<br>cambia todo</h1>
     <p>Philia conecta personas con afinidad real. Momentos, pasiones y conversaciones que importan de verdad.</p>
     <div class="hero-actions">
-      <a href="#" class="btn-primary">Crear mi perfil gratis →</a>
+      <a href="#" class="btn-primary" onclick="openPopup(); return false;">Crear mi perfil gratis →</a>
       <a href="#como-funciona" class="btn-secondary">▶ Ver como funciona</a>
     </div>
   </div>
@@ -340,7 +447,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
   <div class="section-label">Empieza hoy</div>
   <h2 class="section-title">Tu historia empieza <em style="color:var(--rose);">aqui</em></h2>
   
-  <div style="margin-bottom:1.5rem;"><a href="#" class="btn-primary" style="display:inline-flex;padding:0.85rem 2rem;">Empezar gratis →</a></div>
+  <div style="margin-bottom:1.5rem;"><a href="#" class="btn-primary" style="display:inline-flex;padding:0.85rem 2rem;" onclick="openPopup(); return false;">Empezar gratis →</a></div>
   <div class="app-badges">
     <a href="#" class="app-badge"><span class="app-badge-icon"></span><span><span class="app-badge-sub">Disponible en</span><span class="app-badge-main">App Store</span></span></a>
     <a href="#" class="app-badge"><span class="app-badge-icon">▶</span><span><span class="app-badge-sub">Disponible en</span><span class="app-badge-main">Google Play</span></span></a>
@@ -363,6 +470,34 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Ar
   <a style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.8rem;cursor:pointer;" onclick="window.location.href='cookies.html'">Política de Cookies</a>
   <span class="legal-sep">·</span>
   <a style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.8rem;cursor:pointer;" onclick="window.location.href='eliminar-cuenta.html'">Eliminar cuenta</a>
+</div>
+
+<!-- ── WAITING LIST POPUP ── -->
+<div class="popup-overlay" id="waitingListPopup">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closePopup()">✕</button>
+    <div class="popup-icon">🔥</div>
+    <div class="popup-badge">Waiting List</div>
+    <div class="popup-title">Sé el primero en<br>encender la <em>chispa</em></div>
+    <div class="popup-subtitle">Philia está a punto de llegar. Apúntate ahora y te avisaremos en cuanto abra el acceso.</div>
+
+    <div id="popup-form-wrap">
+      <form class="popup-form" onsubmit="submitWaitingList(event)">
+        <input class="popup-input" type="text" name="name" placeholder="Tu nombre" required>
+        <input class="popup-input" type="email" name="email" placeholder="Tu email" required>
+        <input type="hidden" name="_subject" value="Nueva inscripción en Waiting List — Philia">
+        <input type="hidden" name="_replyto" value="">
+        <button type="submit" class="popup-btn">Apuntarme a la lista →</button>
+      </form>
+      <p class="popup-legal">Sin spam. Solo te escribiremos cuando Philia esté disponible.</p>
+    </div>
+
+    <div class="popup-success" id="popup-success">
+      <div style="font-size:2rem;margin-bottom:0.75rem;">✅</div>
+      <div style="font-size:1.1rem;font-weight:700;color:#F0F0F0;margin-bottom:0.5rem;">¡Ya estás en la lista!</div>
+      <p>Te avisaremos en cuanto Philia esté disponible. ¡Hasta pronto!</p>
+    </div>
+  </div>
 </div>
 
 </div><!-- /page-home -->
@@ -454,6 +589,48 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
   });
 });
+
+
+// ── WAITING LIST POPUP ──
+function openPopup() {
+  document.getElementById('waitingListPopup').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePopup() {
+  document.getElementById('waitingListPopup').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('waitingListPopup').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
+
+async function submitWaitingList(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  try {
+    const res = await fetch('https://formspree.io/f/xaenoyew', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('popup-form-wrap').style.display = 'none';
+      document.getElementById('popup-success').classList.add('show');
+      setTimeout(closePopup, 3000);
+    }
+  } catch(err) {
+    console.error(err);
+  }
+}
+
+// Show popup after 4 seconds if not already shown
+if (!sessionStorage.getItem('wl_shown')) {
+  setTimeout(function() {
+    openPopup();
+    sessionStorage.setItem('wl_shown', '1');
+  }, 4000);
+}
 
 // Scroll animations
 const observer = new IntersectionObserver(entries => {
